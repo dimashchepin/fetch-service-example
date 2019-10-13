@@ -30,7 +30,7 @@ public class SampleServiceControllerTest {
     @Test
     public void testIsWordRight() throws Exception {
         String inputWord = "sssell";
-        mvc.perform(MockMvcRequestBuilders.get("/letters/" + inputWord).accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/pyramid/" + inputWord).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("true")));
     }
@@ -38,8 +38,15 @@ public class SampleServiceControllerTest {
     @Test
     public void testIsWordWrong() throws Exception {
         String inputWord = "abba";
-        mvc.perform(MockMvcRequestBuilders.get("/letters/" + inputWord).accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/pyramid/" + inputWord).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("false")));
+    }
+
+    @Test
+    public void testWhenWordIsEmpty() throws Exception {
+        String inputWord = "abba";
+        mvc.perform(MockMvcRequestBuilders.get("/pyramid/").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError());
     }
 }
