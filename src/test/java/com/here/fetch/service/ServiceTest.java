@@ -13,6 +13,12 @@ public class ServiceTest {
     private SampleServiceForWeb instance = new SampleServiceForWeb();
 
     @Test
+    public void testMainPageInfo() throws Exception {
+        String result = instance.displayInfo();
+        Assert.assertEquals(result, SampleServiceForWeb.DISPLAY_INFO);
+    }
+
+    @Test
     public void testIfNotPyramidWord() throws Exception {
         Boolean result = instance.isWordAPyramid("abba");
         Assert.assertEquals(result, false);
@@ -39,6 +45,24 @@ public class ServiceTest {
     @Test
     public void testIfPyramidWordMiddle() throws Exception {
         Boolean result = instance.isWordAPyramid("banana");
+        Assert.assertEquals(result, true);
+    }
+
+    @Test
+    public void testIfPyramidWordOneLetter() throws Exception {
+        Boolean result = instance.isWordAPyramid("b");
+        Assert.assertEquals(result, true);
+    }
+
+    @Test
+    public void testWhenWordIsNumbers() throws Exception {
+        Boolean result = instance.isWordAPyramid("b33444");
+        Assert.assertEquals(result, true);
+    }
+
+    @Test
+    public void testWhenWordIsNumbersAndSymbols() throws Exception {
+        Boolean result = instance.isWordAPyramid("#@@3334444");
         Assert.assertEquals(result, true);
     }
 
