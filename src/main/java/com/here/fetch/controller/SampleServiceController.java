@@ -18,6 +18,17 @@ public class SampleServiceController {
     SampleService productService;
 
     /**
+     * Service to display main page.
+     *
+     * @return main page text
+     */
+    @RequestMapping(value = "/")
+    public ResponseEntity<Object> getMainPage() {
+        return new ResponseEntity<>(productService.displayInfo(), HttpStatus.OK);
+    }
+
+
+    /**
      * Service to analyze word letter frequency (is word a "pyramid").
      *
      * @param word word to be analyzed
