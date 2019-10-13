@@ -15,4 +15,12 @@ public interface SampleService {
      * @return true if word is a "pyramid" else false
      */
     boolean isWordAPyramid(String word);
+
+    /**
+     * Displays main page information.
+     *
+     * @return info text
+     */
+    String displayInfo();
+
 }
