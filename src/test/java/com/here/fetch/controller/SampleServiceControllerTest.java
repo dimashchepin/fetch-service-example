@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.here.fetch.service.SampleServiceForWeb;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,14 @@ public class SampleServiceControllerTest {
     @Autowired
     private MockMvc mvc;
 
+
+    @Test
+    public void testMainPage() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo(SampleServiceForWeb.DISPLAY_INFO)));
+    }
+
     @Test
     public void testIsWordRight() throws Exception {
         String inputWord = "sssell";
@@ -45,8 +54,15 @@ public class SampleServiceControllerTest {
 
     @Test
     public void testWhenWordIsEmpty() throws Exception {
-        String inputWord = "abba";
         mvc.perform(MockMvcRequestBuilders.get("/pyramid/").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testWhenWordIsOneLetter() throws Exception {
+        String inputWord = "a";
+        mvc.perform(MockMvcRequestBuilders.get("/pyramid/" + inputWord).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("true")));
     }
 }
