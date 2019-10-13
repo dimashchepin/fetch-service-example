@@ -18,14 +18,14 @@ public class SampleServiceController {
     SampleService productService;
 
     /**
-     * Service to analyze word letter frequency.
+     * Service to analyze word letter frequency (is word a "pyramid").
      *
      * @param word word to be analyzed
-     * @return get response - "true" if word is "right" else "false"
+     * @return get response - "true" if word is "right" else "false" (and Status 401 when empty)
      */
-    @RequestMapping(value = "/letters/{word}")
-    public ResponseEntity<Object> getRightWord(@PathVariable("word") String word) {
-        return new ResponseEntity<>(productService.isWordRight(word), HttpStatus.OK);
+    @RequestMapping(value = "/pyramid/{word}")
+    public ResponseEntity<Object> getPyramidWord(@PathVariable("word") String word) {
+        return new ResponseEntity<>(productService.isWordAPyramid(word), HttpStatus.OK);
     }
 
 }
