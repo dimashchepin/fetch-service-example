@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Unit tests for sampleService class.
  *
- * @author Dmitriy Shternberg <dmitriy.shternberg@here.com>
+ * @author Dmitriy Shternberg <dimashchepin@gmail.com>
  */
 public class ServiceTest {
 
