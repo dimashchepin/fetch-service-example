@@ -9,10 +9,10 @@ package com.here.fetch.service;
 public interface SampleService {
 
     /**
-     * Determines if word is "right" (has letter frequency numbers, when sorted, in sequence.
+     * Determines if word is "pyramid" (has letter frequency numbers increasing, when sorted).
      *
      * @param word word to be analyzed
-     * @return true if word is "right" else false
+     * @return true if word is a "pyramid" else false
      */
-    boolean isWordRight(String word);
+    boolean isWordAPyramid(String word);
 }

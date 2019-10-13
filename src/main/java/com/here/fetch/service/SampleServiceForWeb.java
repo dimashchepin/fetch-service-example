@@ -17,19 +17,19 @@ public class SampleServiceForWeb implements SampleService {
      * {@inheritDoc}
      */
     @Override
-    public boolean isWordRight(String word) {
+    public boolean isWordAPyramid(String word) {
         String[] rt = word.split("");
         Map<String, Integer> freqs = generateWordFrequencies(rt);
         ArrayList<Integer> freqLst = new ArrayList<>(freqs.values());
         Collections.sort(freqLst);
         boolean wordRight = true;
-        for(int i = 0;i < freqLst.size();i++){
-            if(i > 0 && freqLst.get(i) - freqLst.get(i-1) != 1){
+        for(int i = 0;i < freqLst.size();i++) {
+            if (i > 0 && freqLst.get(i) - freqLst.get(i - 1) != 1) {
                 wordRight = false;
             }
         }
-
-        return wordRight;
+        // if empty, not a pyramid word!
+        return !word.isEmpty() && wordRight;
     }
 
     /**
